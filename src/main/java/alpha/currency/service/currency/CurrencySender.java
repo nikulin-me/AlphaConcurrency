@@ -1,19 +1,24 @@
 package alpha.currency.service.currency;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Map;
 
-@Component
+@Service
 public class CurrencySender {
 
+    private final CurrencyGraber currencyGraber;
+
+    public CurrencySender(CurrencyGraber currencyGraber) {
+        this.currencyGraber = currencyGraber;
+    }
 
     public double getCurrency(String currency) throws IOException {
-        Map currencyNow = CurrencyGraber.getCurrencyNow();
-        Map currencyYesterday = CurrencyGraber.getYesterdayCurrency();
-        Double priceNow = (Double) currencyNow.get(currency);
-        Double priceYesterday = (Double) currencyYesterday.get(currency);
+        Map<String,Double> currencyNow = currencyGraber.getCurrencyNow();
+        Map<String,Double> currencyYesterday = currencyGraber.getYesterdayCurrency();
+        Double priceNow = currencyNow.get(currency);
+        Double priceYesterday = currencyYesterday.get(currency);
 
         return priceNow-priceYesterday;
     }

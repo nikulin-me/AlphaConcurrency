@@ -1,21 +1,11 @@
 package currency.pre;
 
-import alpha.currency.dao.DataFromProperties;
-
 import java.io.IOException;
 
-public abstract class AbstractCurrency extends DataFromProperties {
+public abstract class AbstractCurrency {
     private String appId;
 
-    public AbstractCurrency() throws IOException {
-        String appId = getProperty("data.appid");
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
+    public AbstractCurrency() {
+        this.appId = "e1e243ae2b5f4b4494f092599741fe52";
     }
 }
