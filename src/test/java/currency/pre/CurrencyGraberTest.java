@@ -1,21 +1,21 @@
 package currency.pre;
 
-import org.springframework.boot.test.context.SpringBootTest;
+import alpha.currency.service.currency.CurrencyGraber;
+import alpha.currency.service.currency.CurrencySender;
 import org.junit.Test;
 
-import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.Date;
+import java.io.IOException;
 
-public class CurrencyGraberTest{
+public class CurrencyGraberTest extends AbstractCurrency{
+    public CurrencyGraberTest() throws IOException {
+        super();
+    }
 
     @Test
-    public void getYesterday(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        Timestamp timeStamp = new Timestamp(System.currentTimeMillis()-86_400*1000);
-        Date date = new Date(timeStamp.getTime());
-        System.out.println(dtf.format((TemporalAccessor) date));
-
+    public void getYesterday() throws IOException {
+        CurrencySender currencySender = new CurrencySender();
+        boolean all = currencySender.amIRich("UYU");
+        System.out.println(currencySender.getCurrency("UYU"));
+        System.out.println(all);
     }
 }

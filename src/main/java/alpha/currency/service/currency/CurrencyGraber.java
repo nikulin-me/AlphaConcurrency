@@ -49,6 +49,4 @@ public final class CurrencyGraber {
     public static Map getCurrencyNow() throws IOException {
         return getData(LATEST);
     }
-
-
 }
