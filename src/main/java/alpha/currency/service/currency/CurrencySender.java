@@ -22,9 +22,10 @@ public class CurrencySender {
         Map<String,Double> currencyYesterday = currencyGraber.getYesterdayCurrency();
         Double priceNow = currencyNow.get(currency);
         Double priceYesterday = currencyYesterday.get(currency);
-        logger.info("Delta between now`s and yesterday`s prices");
+        double v = priceNow - priceYesterday;
+        logger.info("Delta between now`s and yesterday`s prices "+v);
 
-        return priceNow-priceYesterday;
+        return v;
     }
 
     public boolean amIRich(String currency) throws IOException {

@@ -36,7 +36,7 @@ public class CurrencyGraber {
         JsonElement parseReader = JsonParser.parseReader(new InputStreamReader((InputStream) connection.getContent()));
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
-        logger.info("Getting data from exchange");
+        logger.info("Getting data from exchange "+request);
         return gson.fromJson(parseReader.getAsJsonObject().get("rates"), Map.class);
     }
 
