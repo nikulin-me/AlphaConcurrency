@@ -1,6 +1,6 @@
 package alpha.currency;
 
-import alpha.currency.model.CurrencyGraber;
+import alpha.currency.service.currency.CurrencyGraber;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;

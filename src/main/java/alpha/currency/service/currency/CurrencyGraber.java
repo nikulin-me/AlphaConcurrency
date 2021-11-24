@@ -1,4 +1,4 @@
-package alpha.currency.model;
+package alpha.currency.service.currency;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,14 +16,14 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 @Component
-public class CurrencyGraber {
+public final class CurrencyGraber {
     @Value("${appid}")
-    private String appId="e1e243ae2b5f4b4494f092599741fe52";
+    private static final String appId="e1e243ae2b5f4b4494f092599741fe52";
     private static final String url="https://openexchangerates.org/api/";
-    private final String LATEST="latest.json?app_id=%s";
-    private final String HISTORICAL="historical/%s.json?app_id=%s";
+    private static final String LATEST="latest.json?app_id=%s";
+    private static final String HISTORICAL="historical/%s.json?app_id=%s";
 
-    public Map getData(String request) throws IOException {
+    public static Map getData(String request) throws IOException {
         String urlString=String.format(url+request,appId);
         URLConnection connection=new URL(urlString).openConnection();
         connection.connect();
@@ -34,7 +34,7 @@ public class CurrencyGraber {
     }
 
     //https://openexchangerates.org/api/historical/2012-07-10.json?app_id=YOUR_APP_ID
-    public Map getYesterdayCurrency() throws IOException {
+    public static Map getYesterdayCurrency() throws IOException {
         Timestamp timeStamp = new Timestamp(System.currentTimeMillis()-86_400*1000);
         String date = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date (timeStamp.getTime()));
         System.out.println(date);
@@ -46,7 +46,7 @@ public class CurrencyGraber {
 
 
     //https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID
-    public Map getCurrencyNow() throws IOException {
+    public static Map getCurrencyNow() throws IOException {
         return getData(LATEST);
     }
 
