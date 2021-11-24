@@ -25,19 +25,15 @@ public class CurrencyGraber {
     private final String url = "https://openexchangerates.org/api/";
     private final String LATEST = "latest.json?app_id=%s";
     private final String HISTORICAL = "historical/%s.json?app_id=%s";
-    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(CurrencyGraber.class);
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CurrencyGraber.class);
 
 
     //handle and convert to map data from api
     public Map<String, Double> getData(String request) throws IOException {
         String urlString = String.format(url + request, appId);
-        URLConnection connection = new URL(urlString).openConnection();
-        connection.connect();
-        JsonElement parseReader = JsonParser.parseReader(new InputStreamReader((InputStream) connection.getContent()));
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        Gson gson = gsonBuilder.create();
-        logger.info("Getting data from exchange "+request);
-        return gson.fromJson(parseReader.getAsJsonObject().get("rates"), Map.class);
+        logger.info("Getting data from exchange " + request);
+        Map abstractData = Graber.getAbstractData(urlString);
+        return (Map<String, Double>) abstractData.get("rates");
     }
 
     //get yesterday price

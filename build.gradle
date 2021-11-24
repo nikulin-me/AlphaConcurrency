@@ -1,38 +1,45 @@
-buildscript {
-    ext{
-        springBootVersion='2.5.6'
-        junitVersion = '5.3.2'
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:"+springBootVersion)
-    }
-}
 plugins {
-    id 'war'
     id 'java'
-    id 'org.springframework.boot' version '2.5.6'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
 }
+
+
+
+apply plugin: "io.spring.dependency-management"
+
+
 group 'com.alpha.gif'
 version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
-    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+
+}
+ext {
+    set('springCloudVersion', "Hoxton.RC2")
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+    implementation 'org.jasypt:jasypt:1.9.3'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     testImplementation ('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit'
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    implementation 'org.projectlombok:lombok:1.18.22'
-    implementation 'org.jasypt:jasypt:1.9.3'
-    implementation 'com.google.code.gson:gson:2.8.9'
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {

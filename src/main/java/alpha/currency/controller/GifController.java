@@ -22,7 +22,7 @@ public class GifController {
 
 
     @GetMapping
-    public Object getGif(@RequestParam String currency) throws IOException {
-        return currencySender.amIRich(currency);
+    public Object getGif(@RequestParam String value) throws IOException {
+        return currencySender.amIRich(value);
     }
 }
