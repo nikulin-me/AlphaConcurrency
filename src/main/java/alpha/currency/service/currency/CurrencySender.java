@@ -1,5 +1,6 @@
 package alpha.currency.service.currency;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.util.Map;
 public class CurrencySender {
 
     private final CurrencyGraber currencyGraber;
+    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(CurrencySender.class);
+
 
     public CurrencySender(CurrencyGraber currencyGraber) {
         this.currencyGraber = currencyGraber;
@@ -19,6 +22,7 @@ public class CurrencySender {
         Map<String,Double> currencyYesterday = currencyGraber.getYesterdayCurrency();
         Double priceNow = currencyNow.get(currency);
         Double priceYesterday = currencyYesterday.get(currency);
+        logger.info("Delta between now`s and yesterday`s prices");
 
         return priceNow-priceYesterday;
     }

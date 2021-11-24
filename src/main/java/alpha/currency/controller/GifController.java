@@ -20,6 +20,6 @@ public class GifController {
 
     @GetMapping
     public Object getGif() throws IOException {
-        return currencySender.getCurrency("ALL");
+        return currencySender.amIRich("ALL");
     }
 }

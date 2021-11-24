@@ -4,9 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,10 +19,14 @@ import java.util.Map;
 @Service
 //This class get data about currency
 public class CurrencyGraber {
-    private final String appId="e1e243ae2b5f4b4494f092599741fe52";
+    @Value("${exchange.acc-key}")
+    private String appId;
+
     private final String url = "https://openexchangerates.org/api/";
     private final String LATEST = "latest.json?app_id=%s";
     private final String HISTORICAL = "historical/%s.json?app_id=%s";
+    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(CurrencyGraber.class);
+
 
     //handle and convert to map data from api
     public Map<String, Double> getData(String request) throws IOException {
@@ -33,6 +36,7 @@ public class CurrencyGraber {
         JsonElement parseReader = JsonParser.parseReader(new InputStreamReader((InputStream) connection.getContent()));
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
+        logger.info("Getting data from exchange");
         return gson.fromJson(parseReader.getAsJsonObject().get("rates"), Map.class);
     }
 
@@ -41,8 +45,8 @@ public class CurrencyGraber {
     public Map<String, Double> getYesterdayCurrency() throws IOException {
         Timestamp timeStamp = new Timestamp(System.currentTimeMillis() - 86_400 * 1000);
         String date = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(timeStamp.getTime()));
-        System.out.println(date);
         String yesterday = String.format(HISTORICAL, date, appId);
+        logger.info("Getting price yesterday");
         return getData(yesterday);
     }
 
@@ -50,6 +54,7 @@ public class CurrencyGraber {
     //get today price
     //https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID
     public Map<String, Double> getCurrencyNow() throws IOException {
+        logger.info("Getting price now");
         return getData(LATEST);
     }
 }
