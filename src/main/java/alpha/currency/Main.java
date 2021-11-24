@@ -1,6 +1,6 @@
-package alpha.concurrency;
+package alpha.currency;
 
-import alpha.concurrency.model.CurrencyGraber;
+import alpha.currency.model.CurrencyGraber;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
