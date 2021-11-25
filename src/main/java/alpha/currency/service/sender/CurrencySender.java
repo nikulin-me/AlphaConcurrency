@@ -1,5 +1,6 @@
-package alpha.currency.service.currency;
+package alpha.currency.service.sender;
 
+import alpha.currency.service.collector.CurrencyCollector;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +10,17 @@ import java.util.Map;
 @Service
 public class CurrencySender {
 
-    private final CurrencyGraber currencyGraber;
+    private final CurrencyCollector currencyCollector;
     private static final org.slf4j.Logger logger= LoggerFactory.getLogger(CurrencySender.class);
 
 
-    public CurrencySender(CurrencyGraber currencyGraber) {
-        this.currencyGraber = currencyGraber;
+    public CurrencySender(CurrencyCollector currencyCollector) {
+        this.currencyCollector = currencyCollector;
     }
 
     public double getCurrency(String currency) throws IOException {
-        Map<String,Double> currencyNow = currencyGraber.getCurrencyNow();
-        Map<String,Double> currencyYesterday = currencyGraber.getYesterdayCurrency();
+        Map<String,Double> currencyNow = currencyCollector.getCurrencyNow();
+        Map<String,Double> currencyYesterday = currencyCollector.getYesterdayCurrency();
         Double priceNow = currencyNow.get(currency);
         Double priceYesterday = currencyYesterday.get(currency);
         double v = priceNow - priceYesterday;

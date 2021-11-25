@@ -1,5 +1,7 @@
 package alpha.currency.service.currency;
 
+import alpha.currency.service.collector.CurrencyCollector;
+import alpha.currency.service.sender.CurrencySender;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,7 +18,7 @@ class CurrencySenderTest {
 
     @Test
     void getCurrency() throws IOException {
-        CurrencyGraber currencyGraber= mock(CurrencyGraber.class);
+        CurrencyCollector currencyGraber= mock(CurrencyCollector.class);
         Map<String,Double> rates=new HashMap<>(Map.of("RUB",90.0));
         Map<String, Double> ratesOld=new HashMap<>(Map.of("RUB",80.0));
         when(currencyGraber.getCurrencyNow()).thenReturn(rates);

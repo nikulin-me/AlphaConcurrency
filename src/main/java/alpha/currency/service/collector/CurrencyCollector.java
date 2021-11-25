@@ -1,38 +1,31 @@
-package alpha.currency.service.currency;
+package alpha.currency.service.collector;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import alpha.currency.service.AbstractCollector;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.util.Map;
 
 @Service
 //This class get data about currency
-public class CurrencyGraber {
-    @Value("${exchange.acc-key}")
+public class CurrencyCollector {
+    @Value("${acc-key.exchange}")
     private String appId;
 
     private final String url = "https://openexchangerates.org/api/";
     private final String LATEST = "latest.json?app_id=%s";
     private final String HISTORICAL = "historical/%s.json?app_id=%s";
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CurrencyGraber.class);
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CurrencyCollector.class);
 
 
     //handle and convert to map data from api
     public Map<String, Double> getData(String request) throws IOException {
         String urlString = String.format(url + request, appId);
         logger.info("Getting data from exchange " + request);
-        Map abstractData = Graber.getAbstractData(urlString);
+        Map abstractData = AbstractCollector.getAbstractData(urlString);
         return (Map<String, Double>) abstractData.get("rates");
     }
 

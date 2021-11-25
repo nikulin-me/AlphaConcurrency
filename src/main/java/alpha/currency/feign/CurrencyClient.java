@@ -1,7 +1,7 @@
 package alpha.currency.feign;
 
 
-import alpha.currency.service.currency.CurrencySender;
+import alpha.currency.service.sender.CurrencySender;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
