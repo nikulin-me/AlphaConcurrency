@@ -18,7 +18,7 @@ public class CurrencySender {
         this.currencyCollector = currencyCollector;
     }
 
-    public double getCurrency(String currency) throws IOException {
+    public double getGifByCurrencyChanged(String currency) throws IOException {
         Map<String,Double> currencyNow = currencyCollector.getCurrencyNow();
         Map<String,Double> currencyYesterday = currencyCollector.getYesterdayCurrency();
         Double priceNow = currencyNow.get(currency);
@@ -30,6 +30,6 @@ public class CurrencySender {
     }
 
     public boolean amIRich(String currency) throws IOException {
-        return getCurrency(currency) > 0;
+        return getGifByCurrencyChanged(currency) > 0;
     }
 }

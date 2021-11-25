@@ -1,8 +1,10 @@
 package alpha.currency.controller;
 
 
-import alpha.currency.service.sender.CurrencySender;
+import alpha.currency.service.sender.GifSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.reactive.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,16 +15,17 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/currency")
 public class GifController {
-    private final CurrencySender currencySender;
+    private final GifSender gifSender;
 
     @Autowired
-    public GifController(CurrencySender currencySender) {
-        this.currencySender = currencySender;
+    public GifController(GifSender gifSender) {
+        this.gifSender = gifSender;
     }
 
 
     @GetMapping
-    public Object getGif(@RequestParam String value) throws IOException {
-        return currencySender.amIRich(value);
+    public Object getGif(@RequestParam String currency) throws IOException {
+        return gifSender.getGif(currency);
     }
+
 }

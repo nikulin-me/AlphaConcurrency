@@ -24,7 +24,7 @@ class CurrencySenderTest {
         when(currencyGraber.getCurrencyNow()).thenReturn(rates);
         when(currencyGraber.getYesterdayCurrency()).thenReturn(ratesOld);
         CurrencySender currencySender = new CurrencySender(currencyGraber);
-        assertEquals(10.0,currencySender.getCurrency("RUB"));
+        assertEquals(10.0,currencySender.getGifByCurrencyChanged("RUB"));
     }
 
     @Test

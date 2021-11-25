@@ -16,14 +16,15 @@ public class CurrencyCollector {
     private String appId;
 
     private final String url = "https://openexchangerates.org/api/";
-    private final String LATEST = "latest.json?app_id=%s";
-    private final String HISTORICAL = "historical/%s.json?app_id=%s";
+    private final String LATEST = "latest.json";
+    private final String HISTORICAL = "historical/%s.json";
+    private final String appUrl="?app_id=%s";
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CurrencyCollector.class);
 
 
     //handle and convert to map data from api
     public Map<String, Double> getData(String request) throws IOException {
-        String urlString = String.format(url + request, appId);
+        String urlString = String.format(url + request+appUrl, appId);
         logger.info("Getting data from exchange " + request);
         Map abstractData = AbstractCollector.getAbstractData(urlString);
         return (Map<String, Double>) abstractData.get("rates");
