@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -15,6 +16,7 @@ public class GifCollector {
     @Value("${acc-key.giphy}")
     private String appId;
 
+    //https://api.giphy.com/v1/gifs/search?q=broke&api_key=Fg5ZichfqPaNaXtBRycoWr9bCoT7WtYR
     private final String q="?q=%s";
     private final String broke="broke";
     private final String rich="rich";
@@ -27,10 +29,12 @@ public class GifCollector {
 
     private  String getUrl(String request) throws IOException {
         String urlString=String.format(url+q+appUrl,request,appId);
-        Map data = AbstractCollector.getAbstractData(urlString);
-        List<Map<String, String>> map = (List<Map<String, String>>) data.get("data");
-        Map<String, String> mapOfData = map.get(random.nextInt(map.size()));
-        return mapOfData.get("url");
+        Map<?,?> data = AbstractCollector.getAbstractData(urlString);
+        List<?> data1 = (List<?>) data.get("data");
+        Map<?,?> map= (Map<?, ?>) data1.get(0);
+        Map<?,?> images = (Map<?, ?>) map.get("images");
+        Map<?,?> downsized = (Map<?, ?>) images.get("downsized");
+        return (String) downsized.get("url");
         /*https://media4.giphy.com/media/YsTs5ltWtEhnq/giphy.gif?cid=790b761145e66c709e29f991b8627365e2a5a44350557489&rid=giphy.gif&ct=g*/
     }
     //https://giphy.com/search/broke

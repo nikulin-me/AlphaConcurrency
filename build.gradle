@@ -28,14 +28,15 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
-    implementation group: 'com.squareup.moshi', name: 'moshi', version: '1.12.0'
     implementation 'org.jasypt:jasypt:1.9.3'
     implementation 'com.google.code.gson:gson:2.8.9'
+
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     testImplementation ('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit'
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.2.9.RELEASE'
 }
 dependencyManagement {
     imports {

@@ -1,15 +1,19 @@
 package alpha.currency.service.sender;
 
-import alpha.currency.service.AbstractCollector;
 import alpha.currency.service.collector.GifCollector;
+import com.fasterxml.jackson.core.util.ByteArrayBuilder;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class GifSender {
@@ -22,7 +26,7 @@ public class GifSender {
         this.currencySender = currencySender;
     }
 
-    public String getGifURL(String currency) throws IOException {
+    public String getGifURLDependingDelta(String currency) throws IOException {
         boolean isRich = currencySender.amIRich(currency);
         if (isRich){
             return gifCollector.getRichGif();
@@ -32,10 +36,29 @@ public class GifSender {
         }
     }
 
-    public byte[] getGif(String currency) throws Exception {
-        URL url = new URL(getGifURL(currency));
-        InputStreamReader reader = new InputStreamReader(url.openStream());
-        System.out.println(reader);
-        return new Gson().fromJson(reader,byte[].class);
+    public byte[] getGif(String currency) throws IOException {
+        URL url = new URL(getGifURLDependingDelta(currency));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        try (InputStream inputStream = url.openStream()) {
+            int n = 0;
+            byte [] buffer = new byte[9999999];
+            while (-1 != (n = inputStream.read(buffer))) {
+                output.write(buffer, 0, n);
+            }
+        }
+
+        return output.toByteArray();
     }
+
+    /*public URI getGif(String currency) throws Exception {
+        URL url = new URL(getGifURLDependingDelta(currency));
+        InputStreamReader reader = new InputStreamReader(url.openStream());
+        while (reader.ready()){
+            System.out.println(reader.read());
+        }
+        URI uri = URI.create(URLEncoder.encode(String.valueOf(new Gson().fromJson(reader, URI.class)), StandardCharsets.UTF_8));
+        System.out.println(uri.toURL());
+        return uri;
+    }*/
 }
