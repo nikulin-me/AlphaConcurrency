@@ -31,6 +31,7 @@ public class GifCollector {
         List<Map<String, String>> map = (List<Map<String, String>>) data.get("data");
         Map<String, String> mapOfData = map.get(random.nextInt(map.size()));
         return mapOfData.get("url");
+        /*https://media4.giphy.com/media/YsTs5ltWtEhnq/giphy.gif?cid=790b761145e66c709e29f991b8627365e2a5a44350557489&rid=giphy.gif&ct=g*/
     }
     //https://giphy.com/search/broke
     //when down
