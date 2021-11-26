@@ -1,19 +1,13 @@
 package alpha.currency.service.sender;
 
 import alpha.currency.service.collector.GifCollector;
-import com.fasterxml.jackson.core.util.ByteArrayBuilder;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 @Service
 public class GifSender {
@@ -47,7 +41,6 @@ public class GifSender {
                 output.write(buffer, 0, n);
             }
         }
-
         return output.toByteArray();
     }
 
