@@ -12,6 +12,6 @@ import java.util.Map;
 public abstract class AbstractCollector {
     public static Map getAbstractData(String url) throws IOException {
         InputStreamReader reader = new InputStreamReader(new URL(url).openStream());
-        return new Gson().fromJson(reader,Map.class);
+        return new Gson().fromJson(reader, Map.class);
     }
 }

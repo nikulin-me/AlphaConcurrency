@@ -13,11 +13,17 @@ group 'com.alpha.gif'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '11'
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
-
 }
+
 ext {
     set('springCloudVersion', "Hoxton.RC2")
 }
@@ -31,6 +37,8 @@ dependencies {
     implementation 'org.jasypt:jasypt:1.9.3'
     implementation 'com.google.code.gson:gson:2.8.9'
 
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     testImplementation ('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit'

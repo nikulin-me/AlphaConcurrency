@@ -2,23 +2,27 @@ package alpha.currency.controller;
 
 
 import alpha.currency.service.sender.GifSender;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import alpha.currency.service.sender.GifService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/currency")
+@RequiredArgsConstructor
 public class GifController {
-    private final GifSender gifSender;
+    private final GifService gifService;
 
-    @Autowired
+
+
+    @GetMapping
+    public List<Object> getGif(@RequestParam String currency) throws IOException {
+        return gifService.getGifList(currency);
+    }
+
+    /*@Autowired
     public GifController(GifSender gifSender) {
         this.gifSender = gifSender;
     }
@@ -50,5 +54,5 @@ public class GifController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<>(gifSender.getGif(currency), headers, HttpStatus.OK);
-    }
+    }*/
 }

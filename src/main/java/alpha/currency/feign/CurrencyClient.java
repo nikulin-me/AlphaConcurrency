@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "currency",url = "https://openexchangerates.org/api/")
+@FeignClient(name = "currency-client",url = "https://openexchangerates.org/api/")
 //https://openexchangerates.org/api/latest.json
 //                                             ?app_id=YOUR_APP_ID
 //                                             &base=GBP
