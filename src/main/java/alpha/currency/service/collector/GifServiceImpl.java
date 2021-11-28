@@ -1,7 +1,6 @@
 package alpha.currency.service.collector;
 
 import alpha.currency.clients.GifFeignClient;
-import alpha.currency.model.Datum;
 import alpha.currency.model.Gif;
 import alpha.currency.service.sender.CurrencySender;
 import com.google.gson.Gson;
