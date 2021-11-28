@@ -2,20 +2,16 @@ package alpha.currency.controller;
 
 import alpha.currency.service.sender.GifSender;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
 
 @RestController
@@ -27,7 +23,7 @@ public class GifController {
     private String appId;
 
     @GetMapping(value = "/gif/{currency}")
-    public ResponseEntity<Image> getGif(@PathVariable("currency") String currency) throws IOException {
+    public byte[] getGif(@PathVariable("currency") String currency) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
 /*
@@ -35,10 +31,11 @@ public class GifController {
 
 */
         URL url=new URL(gifSender.getGifByCurrency(appId,currency));
-        BufferedImage image = ImageIO.read(url);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        InputStream in=url.openStream();
+        return IOUtils.toByteArray(in);
+        /*BufferedImage image = ImageIO.read(url);
         return ResponseEntity.ok()
-                .contentType(MediaType.valueOf(MediaType.IMAGE_GIF_VALUE)).body(image);
+                .contentType(MediaType.valueOf(MediaType.IMAGE_GIF_VALUE)).body(image);*/
     }
 
 
@@ -49,5 +46,3 @@ public ResponseEntity<byte[]> getImage(@PathVariable("id")String id, HttpServlet
     response.setContentType(MediaType.IMAGE_JPEG_VALUE);
     return ResponseEntity.ok(image);
 }*/
-
-/**/
