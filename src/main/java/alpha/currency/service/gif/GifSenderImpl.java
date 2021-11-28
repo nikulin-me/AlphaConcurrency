@@ -1,9 +1,8 @@
-package alpha.currency.service.sender;
+package alpha.currency.service.gif;
 
 
 import alpha.currency.model.Datum;
 import alpha.currency.model.Gif;
-import alpha.currency.service.collector.GifService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

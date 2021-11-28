@@ -1,4 +1,4 @@
-package alpha.currency.service.collector;
+package alpha.currency.service.currency;
 
 import alpha.currency.clients.CurrencyFeignClient;
 import com.google.gson.Gson;

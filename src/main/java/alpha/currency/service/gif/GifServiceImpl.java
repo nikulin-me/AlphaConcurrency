@@ -1,8 +1,8 @@
-package alpha.currency.service.collector;
+package alpha.currency.service.gif;
 
 import alpha.currency.clients.GifFeignClient;
 import alpha.currency.model.Gif;
-import alpha.currency.service.sender.CurrencySender;
+import alpha.currency.service.currency.CurrencySender;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package alpha.currency.service.collector;
+package alpha.currency.service.currency;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 

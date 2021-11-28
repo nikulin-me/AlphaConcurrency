@@ -1,6 +1,6 @@
 package alpha.currency.controller;
 
-import alpha.currency.service.sender.GifSender;
+import alpha.currency.service.gif.GifSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

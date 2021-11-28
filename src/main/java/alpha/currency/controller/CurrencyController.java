@@ -1,6 +1,6 @@
 package alpha.currency.controller;
 
-import alpha.currency.service.collector.CurrencyService;
+import alpha.currency.service.currency.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;

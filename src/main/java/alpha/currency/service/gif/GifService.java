@@ -1,4 +1,4 @@
-package alpha.currency.service.collector;
+package alpha.currency.service.gif;
 
 
 import alpha.currency.model.Gif;

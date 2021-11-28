@@ -1,4 +1,4 @@
-package alpha.currency.service.sender;
+package alpha.currency.service.currency;
 
 import alpha.currency.model.Gif;
 
