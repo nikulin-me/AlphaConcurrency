@@ -1,8 +1,9 @@
 package alpha.currency.service.collector;
 
 
+import alpha.currency.model.Gif;
 
 public interface GifService {
-    model.Gif getGif(String appId, String request);
+    Gif getGif(String appId, String request);
     String getRequestByDelta(String currency);
 }
