@@ -1,6 +1,6 @@
-package alpha.currency.service.currency;
+package alpha.currency.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import alpha.currency.service.collector.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +14,6 @@ public class CurrencyController {
 
     @Value("${acc-key.exchange}")
     private String appId;
-
-
-   /* @GetMapping("/currency/{currency}")
-    public Double getLatest(@PathVariable String currency) throws JsonProcessingException {
-        return currencyService.getLatest(appId,currency);
-    }
-
-    @GetMapping("/currency/{currency}/historical")
-    public Double getHistorical(@PathVariable String currency){
-        return currencyService.getHistorical(appId, currency);
-    }*/
 
     @GetMapping("/currency/{currency}")
     public Double getDelta(@PathVariable String currency){

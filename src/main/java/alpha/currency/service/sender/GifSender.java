@@ -1,18 +1,37 @@
 package alpha.currency.service.sender;
 
-import alpha.currency.service.collector.GifCollector;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
 
 @Service
 public class GifSender {
-    private GifCollector gifCollector;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private GifCollector gifCollector;
     private CurrencySender currencySender;
 
     @Autowired
@@ -43,7 +62,7 @@ public class GifSender {
             }
         }
         return output.toByteArray();
-    }
+    }*/
 
 
     /*public URI getGif(String currency) throws Exception {

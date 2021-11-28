@@ -1,11 +1,11 @@
-package alpha.currency.service.currency;
+package alpha.currency.clients;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @FeignClient(name = "currency-client",url = "https://openexchangerates.org/api/")
 public interface CurrencyFeignClient {
