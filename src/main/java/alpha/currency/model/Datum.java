@@ -5,6 +5,8 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 @Generated("jsonschema2pojo")
 public class Datum {
 
@@ -68,9 +70,6 @@ public class Datum {
     @SerializedName("analytics_response_payload")
     @Expose
     private String analyticsResponsePayload;
-    @SerializedName("analytics")
-    @Expose
-    private Analytics analytics;
 
     public String getType() {
         return type;
@@ -232,14 +231,6 @@ public class Datum {
         this.analyticsResponsePayload = analyticsResponsePayload;
     }
 
-    public Analytics getAnalytics() {
-        return analytics;
-    }
-
-    public void setAnalytics(Analytics analytics) {
-        this.analytics = analytics;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -326,7 +317,6 @@ public class Datum {
         sb.append(',');
         sb.append("analytics");
         sb.append('=');
-        sb.append(((this.analytics == null)?"<null>":this.analytics));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -349,7 +339,6 @@ public class Datum {
         result = ((result* 31)+((this.type == null)? 0 :this.type.hashCode()));
         result = ((result* 31)+((this.title == null)? 0 :this.title.hashCode()));
         result = ((result* 31)+((this.url == null)? 0 :this.url.hashCode()));
-        result = ((result* 31)+((this.analytics == null)? 0 :this.analytics.hashCode()));
         result = ((result* 31)+((this.contentUrl == null)? 0 :this.contentUrl.hashCode()));
         result = ((result* 31)+((this.sourceTld == null)? 0 :this.sourceTld.hashCode()));
         result = ((result* 31)+((this.isSticker == null)? 0 :this.isSticker.hashCode()));
@@ -364,15 +353,10 @@ public class Datum {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Datum) == false) {
-            return false;
-        }
-        Datum rhs = ((Datum) other);
-        return ((((((((((((((((((((((this.embedUrl == rhs.embedUrl)||((this.embedUrl!= null)&&this.embedUrl.equals(rhs.embedUrl)))&&((this.images == rhs.images)||((this.images!= null)&&this.images.equals(rhs.images))))&&((this.sourcePostUrl == rhs.sourcePostUrl)||((this.sourcePostUrl!= null)&&this.sourcePostUrl.equals(rhs.sourcePostUrl))))&&((this.bitlyUrl == rhs.bitlyUrl)||((this.bitlyUrl!= null)&&this.bitlyUrl.equals(rhs.bitlyUrl))))&&((this.rating == rhs.rating)||((this.rating!= null)&&this.rating.equals(rhs.rating))))&&((this.trendingDatetime == rhs.trendingDatetime)||((this.trendingDatetime!= null)&&this.trendingDatetime.equals(rhs.trendingDatetime))))&&((this.source == rhs.source)||((this.source!= null)&&this.source.equals(rhs.source))))&&((this.type == rhs.type)||((this.type!= null)&&this.type.equals(rhs.type))))&&((this.title == rhs.title)||((this.title!= null)&&this.title.equals(rhs.title))))&&((this.url == rhs.url)||((this.url!= null)&&this.url.equals(rhs.url))))&&((this.analytics == rhs.analytics)||((this.analytics!= null)&&this.analytics.equals(rhs.analytics))))&&((this.contentUrl == rhs.contentUrl)||((this.contentUrl!= null)&&this.contentUrl.equals(rhs.contentUrl))))&&((this.sourceTld == rhs.sourceTld)||((this.sourceTld!= null)&&this.sourceTld.equals(rhs.sourceTld))))&&((this.isSticker == rhs.isSticker)||((this.isSticker!= null)&&this.isSticker.equals(rhs.isSticker))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.bitlyGifUrl == rhs.bitlyGifUrl)||((this.bitlyGifUrl!= null)&&this.bitlyGifUrl.equals(rhs.bitlyGifUrl))))&&((this.user == rhs.user)||((this.user!= null)&&this.user.equals(rhs.user))))&&((this.slug == rhs.slug)||((this.slug!= null)&&this.slug.equals(rhs.slug))))&&((this.importDatetime == rhs.importDatetime)||((this.importDatetime!= null)&&this.importDatetime.equals(rhs.importDatetime))))&&((this.username == rhs.username)||((this.username!= null)&&this.username.equals(rhs.username))))&&((this.analyticsResponsePayload == rhs.analyticsResponsePayload)||((this.analyticsResponsePayload!= null)&&this.analyticsResponsePayload.equals(rhs.analyticsResponsePayload))));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Datum datum = (Datum) o;
+        return Objects.equals(type, datum.type) && Objects.equals(id, datum.id) && Objects.equals(url, datum.url) && Objects.equals(slug, datum.slug) && Objects.equals(bitlyGifUrl, datum.bitlyGifUrl) && Objects.equals(bitlyUrl, datum.bitlyUrl) && Objects.equals(embedUrl, datum.embedUrl) && Objects.equals(username, datum.username) && Objects.equals(source, datum.source) && Objects.equals(title, datum.title) && Objects.equals(rating, datum.rating) && Objects.equals(contentUrl, datum.contentUrl) && Objects.equals(sourceTld, datum.sourceTld) && Objects.equals(sourcePostUrl, datum.sourcePostUrl) && Objects.equals(isSticker, datum.isSticker) && Objects.equals(importDatetime, datum.importDatetime) && Objects.equals(trendingDatetime, datum.trendingDatetime) && Objects.equals(images, datum.images) && Objects.equals(user, datum.user) && Objects.equals(analyticsResponsePayload, datum.analyticsResponsePayload);
     }
-
 }

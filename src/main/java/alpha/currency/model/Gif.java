@@ -13,12 +13,6 @@ public class Gif {
     @SerializedName("data")
     @Expose
     private List<Datum> data = new ArrayList<Datum>();
-    @SerializedName("pagination")
-    @Expose
-    private Pagination pagination;
-    @SerializedName("meta")
-    @Expose
-    private Meta meta;
 
     public List<Datum> getData() {
         return data;
@@ -28,21 +22,7 @@ public class Gif {
         this.data = data;
     }
 
-    public Pagination getPagination() {
-        return pagination;
-    }
 
-    public void setPagination(Pagination pagination) {
-        this.pagination = pagination;
-    }
-
-    public Meta getMeta() {
-        return meta;
-    }
-
-    public void setMeta(Meta meta) {
-        this.meta = meta;
-    }
 
     @Override
     public String toString() {
@@ -54,11 +34,9 @@ public class Gif {
         sb.append(',');
         sb.append("pagination");
         sb.append('=');
-        sb.append(((this.pagination == null)?"<null>":this.pagination));
         sb.append(',');
         sb.append("meta");
         sb.append('=');
-        sb.append(((this.meta == null)?"<null>":this.meta));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -71,9 +49,7 @@ public class Gif {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.pagination == null)? 0 :this.pagination.hashCode()));
         result = ((result* 31)+((this.data == null)? 0 :this.data.hashCode()));
-        result = ((result* 31)+((this.meta == null)? 0 :this.meta.hashCode()));
         return result;
     }
 
@@ -86,7 +62,7 @@ public class Gif {
             return false;
         }
         Gif rhs = ((Gif) other);
-        return ((((this.pagination == rhs.pagination)||((this.pagination!= null)&&this.pagination.equals(rhs.pagination)))&&((this.data == rhs.data)||((this.data!= null)&&this.data.equals(rhs.data))))&&((this.meta == rhs.meta)||((this.meta!= null)&&this.meta.equals(rhs.meta))));
+        return (((this.data == rhs.data)||((this.data!= null)&&this.data.equals(rhs.data))));
     }
 
 }
