@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface CurrencyService {
-    Map<String, Double> getLatest(String appId) throws JsonProcessingException;
-    List<Currency> getHistorical(String app_id,String date);
+    Double getLatest(String appId,String currency) throws JsonProcessingException;
+    Double getHistorical(String app_id,String currency);
 }

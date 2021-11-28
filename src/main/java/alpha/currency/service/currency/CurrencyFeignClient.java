@@ -9,10 +9,11 @@ import java.util.List;
 
 @FeignClient(name = "currency-client",url = "https://openexchangerates.org/api/")
 public interface CurrencyFeignClient {
+
     @GetMapping("/latest.json")
     String getLatest(@RequestParam("app_id") String appId);
 
     @GetMapping("/historical/{timestamp}.json")
-    List<Currency> getHistorical(@PathVariable("timestamp") String date,
-                               @RequestParam("app_id") String appId);
+    String getHistorical(@RequestParam("app_id") String appId,
+                        @PathVariable("timestamp") String date);
 }
