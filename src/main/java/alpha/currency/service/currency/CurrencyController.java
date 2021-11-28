@@ -13,16 +13,21 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
     @Value("${acc-key.exchange}")
-    private String app_id;
+    private String appId;
 
 
-    @GetMapping("/currency/{currency}")
+   /* @GetMapping("/currency/{currency}")
     public Double getLatest(@PathVariable String currency) throws JsonProcessingException {
-        return currencyService.getLatest(app_id,currency);
+        return currencyService.getLatest(appId,currency);
     }
 
     @GetMapping("/currency/{currency}/historical")
     public Double getHistorical(@PathVariable String currency){
-        return currencyService.getHistorical(app_id, currency);
+        return currencyService.getHistorical(appId, currency);
+    }*/
+
+    @GetMapping("/currency/{currency}")
+    public Double getDelta(@PathVariable String currency){
+        return currencyService.getDeltaBetweenYesterdayAndNow(appId,currency);
     }
 }

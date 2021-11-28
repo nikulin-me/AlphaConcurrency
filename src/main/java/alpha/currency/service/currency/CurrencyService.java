@@ -7,5 +7,6 @@ import java.util.Map;
 
 public interface CurrencyService {
     Double getLatest(String appId,String currency) throws JsonProcessingException;
-    Double getHistorical(String app_id,String currency);
+    Double getHistorical(String appId,String currency);
+    Double getDeltaBetweenYesterdayAndNow(String appId,String currency);
 }

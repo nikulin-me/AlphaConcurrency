@@ -13,5 +13,4 @@ public class CurrencySender {
     /*public Double getDeltaByCurrency(String currency){
         service.getLatest()
     }*/
-
 }
