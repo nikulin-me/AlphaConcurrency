@@ -1,8 +1,6 @@
 package alpha.currency.controller;
 
 
-import alpha.currency.service.sender.GifSender;
-import alpha.currency.service.sender.GifService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +11,6 @@ import java.util.List;
 @RequestMapping("/currency")
 @RequiredArgsConstructor
 public class GifController {
-    private final GifService gifService;
-
-
-
-    @GetMapping
-    public List<Object> getGif(@RequestParam String currency) throws IOException {
-        return gifService.getGifList(currency);
-    }
 
     /*@Autowired
     public GifController(GifSender gifSender) {

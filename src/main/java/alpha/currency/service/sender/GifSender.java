@@ -1,6 +1,5 @@
 package alpha.currency.service.sender;
 
-import alpha.currency.feign.GifClient;
 import alpha.currency.service.collector.GifCollector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ import java.util.List;
 public class GifSender {
     private GifCollector gifCollector;
     private CurrencySender currencySender;
-    private GifClient gifClient;
 
     @Autowired
     public GifSender(GifCollector gifCollector, CurrencySender currencySender) {
