@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 public class CurrencySenderImpl implements CurrencySender{
     @Autowired
     private final CurrencyService currencyService;
-    @Autowired
-    private final GifServiceImpl gifService;
 
     @Value("${acc-key.giphy}")
     private String appGiph;
@@ -23,11 +21,5 @@ public class CurrencySenderImpl implements CurrencySender{
     public boolean amIRich(String appId,String currency) {
         Double deltaBetweenYesterdayAndNow = currencyService.getDeltaBetweenYesterdayAndNow(appId, currency);
         return deltaBetweenYesterdayAndNow > 0;
-    }
-
-    @Override
-    public Gif sendGif(String appId, String currency) {
-        gifService.getGif(appGiph,currency);
-        return null;
     }
 }

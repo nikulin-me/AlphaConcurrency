@@ -1,24 +1,7 @@
 package alpha.currency.service.sender;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class GifSender {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+public interface GifSender {
+    String getGifByCurrency(String appId, String currency);
 
 
 

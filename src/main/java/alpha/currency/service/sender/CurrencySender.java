@@ -6,6 +6,4 @@ import java.io.IOException;
 
 public interface CurrencySender {
     boolean amIRich(String appId,String currency);
-
-    Gif sendGif(String appId, String currency);
 }
