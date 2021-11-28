@@ -17,11 +17,6 @@ public class Images {
     @Expose
     private Downsized downsized;
 
-    @Expose
-    private OriginalStill originalStill;
-    @SerializedName("original_mp4")
-    @Expose
-    private OriginalMp4 originalMp4;
 
 
 

@@ -19,13 +19,4 @@ public class Gif {
     @SerializedName("data")
     @Expose
     private List<Datum> data = new ArrayList<Datum>();
-
-    public List<Datum> getData() {
-        return data;
-    }
-
-    public void setData(List<Datum> data) {
-        this.data = data;
-    }
-
 }

@@ -25,54 +25,7 @@ public class Datum {
     @SerializedName("url")
     @Expose
     private String url;
-    @SerializedName("slug")
-    @Expose
-    private String slug;
-    @SerializedName("bitly_gif_url")
-    @Expose
-    private String bitlyGifUrl;
-    @SerializedName("bitly_url")
-    @Expose
-    private String bitlyUrl;
-    @SerializedName("embed_url")
-    @Expose
-    private String embedUrl;
-    @SerializedName("username")
-    @Expose
-    private String username;
-    @SerializedName("source")
-    @Expose
-    private String source;
-    @SerializedName("title")
-    @Expose
-    private String title;
-    @SerializedName("rating")
-    @Expose
-    private String rating;
-    @SerializedName("content_url")
-    @Expose
-    private String contentUrl;
-    @SerializedName("source_tld")
-    @Expose
-    private String sourceTld;
-    @SerializedName("source_post_url")
-    @Expose
-    private String sourcePostUrl;
-    @SerializedName("is_sticker")
-    @Expose
-    private Integer isSticker;
-    @SerializedName("import_datetime")
-    @Expose
-    private String importDatetime;
-    @SerializedName("trending_datetime")
-    @Expose
-    private String trendingDatetime;
     @SerializedName("images")
     @Expose
     private Images images;
-
-    @SerializedName("analytics_response_payload")
-    @Expose
-    private String analyticsResponsePayload;
-
 }
