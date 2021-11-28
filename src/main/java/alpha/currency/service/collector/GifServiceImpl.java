@@ -20,7 +20,7 @@ public class GifServiceImpl implements GifService {
     private final CurrencySender currencySender;
 
     @Override
-    public Gif getGif(String appId, String currency) {
+    public model.Gif getGif(String appId, String currency) {
         return new Gson().fromJson(gifFeignClient.getGif(appId,getRequestByDelta(currency)),Gif.class);
     }
 

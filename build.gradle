@@ -37,6 +37,8 @@ dependencies {
     implementation 'org.jasypt:jasypt:1.9.3'
     implementation 'com.google.code.gson:gson:2.8.9'
 
+
+
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
@@ -44,6 +46,7 @@ dependencies {
         exclude group: 'junit'
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.2.9.RELEASE'
 }
 dependencyManagement {

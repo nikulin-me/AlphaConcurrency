@@ -1,24 +1,43 @@
 package alpha.currency.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 public class Test {
     public static void main(String[] args) throws Exception {
+        String json=(" {\n" +
+                "    \"userId\": 1,\n" +
+                "    \"id\": 1,\n" +
+                "    \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n" +
+                "    \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n" +
+                "  }");
 
-        String webPage = "https://api.giphy.com/v1/gifs/search?q=broke&api_key=Fg5ZichfqPaNaXtBRycoWr9bCoT7WtYR&limit=2";
-        String s=("https://media4.giphy.com/media/YsTs5ltWtEhnq/giphy.gif?cid=790b761145e66c709e29f991b8627365e2a5a44350557489&rid=giphy.gif&ct=g");
-        URL url=new URL(s);
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson=gsonBuilder.create();
+        User user = gson.fromJson(json, User.class);
+        System.out.println(user.getUserId());
+    }
+    private static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
 
-        try (InputStream inputStream = url.openStream()) {
-            int n = 0;
-            byte [] buffer = new byte[16565];
-            while (-1 != (n = inputStream.read(buffer))) {
-                output.write(buffer, 0, n);
-            }
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
         }
-        System.out.println(output);
     }
 }
