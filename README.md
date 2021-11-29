@@ -4,7 +4,8 @@ ___
 **Запуск приложения**
 
 ```
-docker start alphac
+docker pull nikulinme/alphaimg
+docker run -p 8080:8080 --rm -d --name alphac nikulinme/alphaimg
 ```
 
 ___
