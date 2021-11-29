@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 
-@FeignClient(name = "currency-client",url = "{url.exchange}")
+@FeignClient(name = "currency-client",url = "${url.exchange}")
 public interface CurrencyFeignClient {
 
     @GetMapping("/latest.json")
