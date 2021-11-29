@@ -65,7 +65,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     //Delta
     public Double getDeltaBetweenYesterdayAndNow(String currency) {
-        log.info(String.format("Calculating delta for",currency));
+        log.info(String.format("Calculating delta for %s",currency));
         return getLatest(currency) - getHistorical(currency);
     }
 }
