@@ -43,7 +43,7 @@ public class GifController {
      */
     @GetMapping("/gif/{currency}")
     public String getGif(@PathVariable("currency") String currency, Model model) throws MalformedURLException {
-        URL url = new URL(gifSender.getGifByCurrency(appId, currency));
+        URL url = new URL(gifSender.getGifByCurrency(currency));
         model.addAttribute("url",url);
         return "gif";
     }

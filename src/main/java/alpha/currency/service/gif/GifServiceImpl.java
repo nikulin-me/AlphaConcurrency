@@ -16,11 +16,14 @@ public class GifServiceImpl implements GifService {
     @Value("${acc-key.exchange}")
     private String appRates;
 
+    @Value("${acc-key.giphy}")
+    private String appGif;
+
     private final CurrencySender currencySender;
 
     @Override
-    public Gif getGif(String appId, String currency) {
-        return new Gson().fromJson(gifFeignClient.getGif(appId,getRequestByDelta(currency)),Gif.class);
+    public Gif getGif(String currency) {
+        return new Gson().fromJson(gifFeignClient.getGif(appGif,getRequestByDelta(currency)),Gif.class);
     }
 
     /**

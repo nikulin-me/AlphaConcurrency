@@ -19,9 +19,9 @@ public class GifSenderImpl implements GifSender {
      * @return url of random gif from gif list
      */
     @Override
-    public String getGifByCurrency(String appId, String currency) {
+    public String getGifByCurrency(String currency) {
         Random random = new Random();
-        Gif gif = gifService.getGif(appId,currency);
+        Gif gif = gifService.getGif(currency);
         List<Datum> data = gif.getData();
         Datum datum = data.get(random.nextInt(data.size()));
         System.out.println(datum.getImages().getOriginal().getUrl());
