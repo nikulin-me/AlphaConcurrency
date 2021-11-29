@@ -12,6 +12,8 @@ import org.springframework.context.annotation.PropertySource;
 @EnableFeignClients
 @PropertySource(value = "classpath:application.properties")
 public class Main {
+
+    //TODO tests, exception handlers, docker container, logging
     public static void main(String[] args){
         SpringApplication.run(Main.class,args);
     }
