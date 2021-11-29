@@ -17,7 +17,7 @@ import java.util.Map;
 @Slf4j
 public class CurrencyServiceImpl implements CurrencyService {
     private final CurrencyFeignClient currencyFeignClient;
-    private final long YESTERDAY = 10;
+    private final long YESTERDAY = 1;
 
     @Value("${acc-key.exchange}")
     private String appKeyRates;

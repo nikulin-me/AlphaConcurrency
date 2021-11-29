@@ -1,12 +1,15 @@
 package alpha.currency.controller;
 
+import alpha.currency.model.Datum;
+import alpha.currency.model.Gif;
 import alpha.currency.service.gif.GifSender;
+import alpha.currency.service.gif.GifService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -37,21 +40,14 @@ public class GifController {
      */
     @GetMapping("/gif/{currency}")
     public String getGif(@PathVariable("currency") String currency, Model model) throws MalformedURLException {
-        URL url = new URL(gifSender.getGifByCurrency(currency));
+        URL url = new URL(gifSender.getGirUrlByCurrency(currency));
         model.addAttribute("url",url);
         return "gif";
     }
 
-    /*@GetMapping("/gif/{currency}/r")
-    public RedirectView getGif(@PathVariable("currency") String currency) throws IOException {
-        URL url = new URL(gifSender.getGifByCurrency(currency));
-        InputStream inputStream = url.openStream();
-        byte[] bytes=new byte[999999];
-        int length;
-        OutputStream outputStream=new ByteArrayOutputStream();
-        while ((length = inputStream.read(bytes)) != -1) {
-            outputStream.write(bytes, 0, length);   // Will write data to file byte by byte of size 2048
-        }
-        return new RedirectView(gifSender.getGifByCurrency(currency));
-    }*/
+    @GetMapping("/gif/{currency}/json")
+    @ResponseBody
+    public Datum getGif(@PathVariable("currency") String currency) throws IOException {
+        return gifSender.getGifByCurrency(currency);
+    }
 }

@@ -26,6 +26,7 @@ public class GifServiceImpl implements GifService {
         return new Gson().fromJson(gifFeignClient.getGif(appGif, getEndpointDependingDelta(currency)),Gif.class);
     }
 
+
     /**
      *
      * @param currency
