@@ -32,10 +32,10 @@ public class GifController {
 
 
 
-    //Not rest because method above send image, not gif
-
     /**
      * @return gif html depending on delta
+     * Not rest because method above send image, not gif that`s why using this
+     * Method below return json gif
      */
     @GetMapping("/gif/{currency}")
     public String getGif(@PathVariable("currency") String currency, Model model) throws MalformedURLException {
