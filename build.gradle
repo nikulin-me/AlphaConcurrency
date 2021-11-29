@@ -40,6 +40,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+
+    testImplementation "com.github.tomakehurst:wiremock-jre8:2.31.0"
+    testImplementation('junit:junit:4.13')
     testImplementation ('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit'
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
