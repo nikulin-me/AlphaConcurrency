@@ -27,7 +27,6 @@ public class GifSenderImpl implements GifSender {
         Gif gif = gifService.getGif(currency);
         List<Datum> data = gif.getData();
         Datum datum = data.get(random.nextInt(data.size()));
-        System.out.println(datum.getImages().getOriginal().getUrl());
         return datum.getImages().getDownsized().getUrl();
     }
     public Datum getGifByCurrency(String currency){

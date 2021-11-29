@@ -33,6 +33,7 @@ public class GifController {
     }*/
 
 
+
     //Not rest because method above send image, not gif
 
     /**
@@ -47,7 +48,6 @@ public class GifController {
 
     /**
      * @return json data gif
-     * @throws IOException
      */
     @GetMapping("/gif/{currency}/json")
     @ResponseBody

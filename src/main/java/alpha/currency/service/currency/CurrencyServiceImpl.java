@@ -23,6 +23,10 @@ public class CurrencyServiceImpl implements CurrencyService {
     private String appKeyRates;
 
 
+    /**
+     * @param currency- ISO 4217(сокращения имён всех стран)- валюта
+     * @return today price requested currency
+     */
     @Override
     public Double getLatest(String currency) throws NonExistentCurrencyException {
         log.info(String.format("Getting latest price for %s ",currency));
@@ -36,6 +40,9 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
+    /**
+     * @return yesterday price requested currency
+     */
     @Override
     public Double getHistorical(String currency) throws NonExistentCurrencyException{
         log.info(String.format("Getting yesterday price for %s ",currency));
@@ -48,13 +55,17 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    //Got all currencies prices today
+    /**
+     * @return  Got all currencies prices today
+     */
     private Map<String, Double> getCurrencies() {
         Map map = new Gson().fromJson(currencyFeignClient.getLatest(appKeyRates), Map.class);
         return (Map<String, Double>) map.get("rates");
     }
 
-    //Got all currencies yesterday
+    /**
+     * @return Got all currencies yesterday
+     */
     private Map<String, Double> getCurrenciesYesterday() {
         LocalDateTime now = LocalDateTime.now().minusDays(YESTERDAY);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -63,7 +74,9 @@ public class CurrencyServiceImpl implements CurrencyService {
         return (Map<String, Double>) map.get("rates");
     }
 
-    //Delta
+    /**
+     * @return delta price between today and yesterday
+     */
     public Double getDeltaBetweenYesterdayAndNow(String currency) {
         log.info(String.format("Calculating delta for %s",currency));
         return getLatest(currency) - getHistorical(currency);
