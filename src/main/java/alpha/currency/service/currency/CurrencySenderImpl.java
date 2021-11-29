@@ -10,7 +10,7 @@ public class CurrencySenderImpl implements CurrencySender{
 
     @Override
     public boolean amIRich(String appId,String currency) {
-        Double deltaBetweenYesterdayAndNow = currencyService.getDeltaBetweenYesterdayAndNow(appId, currency);
+        Double deltaBetweenYesterdayAndNow = currencyService.getDeltaBetweenYesterdayAndNow(currency);
         return deltaBetweenYesterdayAndNow > 0;
     }
 }

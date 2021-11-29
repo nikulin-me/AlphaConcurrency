@@ -1,13 +1,16 @@
 package alpha.currency.service.currency;
 
-import org.junit.jupiter.api.BeforeAll;
+import alpha.currency.exceptions.NonExistentCurrencyException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -20,18 +23,24 @@ class CurrencyServiceImplTest {
     private String appId;
 
     @Test
-    void getLatest() {
+    void shouldReturnCurrencyLatest() {
+        assertNotNull(currencyService.getLatest( "RUB"));
+    }
+
+    @Test
+    void shouldReturnNonExistentCurrencyExceptionNow() {
+        assertThrows(NonExistentCurrencyException.class, () -> currencyService.getLatest("NONE"));
+    }
+
+    @Test
+    void shouldReturnNonExistentCurrencyExceptionYesterday() {
+        assertThrows(NonExistentCurrencyException.class, () -> currencyService.getHistorical( "NONE"));
+    }
+
+    @Test
+    void shouldReturnDelta() {
         CurrencyServiceImpl mock = mock(CurrencyServiceImpl.class);
-        when(mock.getLatest(anyString(),anyString())).thenReturn(75.0);
-        assertEquals(75.0,mock.getLatest(appId,"RUB"));
-    }
 
-    @Test
-    void getHistorical() {
-    }
-
-    @Test
-    void getDeltaBetweenYesterdayAndNow() {
     }
 }
 

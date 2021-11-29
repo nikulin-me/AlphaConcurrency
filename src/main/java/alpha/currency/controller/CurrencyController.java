@@ -22,6 +22,6 @@ public class CurrencyController {
      */
     @GetMapping("/currency/{currency}")
     public Double getDelta(@PathVariable String currency){
-        return currencyService.getDeltaBetweenYesterdayAndNow(appId,currency);
+        return currencyService.getDeltaBetweenYesterdayAndNow(currency);
     }
 }
