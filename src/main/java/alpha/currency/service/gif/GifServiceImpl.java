@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 public class GifServiceImpl implements GifService {
     private final GifFeignClient gifFeignClient;
 
-    @Value("${acc-key.exchange}")
-    private String appRates;
-
     @Value("${acc-key.giphy}")
     private String appGif;
 
@@ -32,7 +29,7 @@ public class GifServiceImpl implements GifService {
      * @return if delta+->/rich else: /broke
      */
     public String getRequestByDelta(String currency){
-        boolean iRich = currencySender.amIRich(appRates, currency);
+        boolean iRich = currencySender.amIRich(currency);
         if (iRich){
             return "rich";
         }
