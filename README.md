@@ -4,7 +4,7 @@ ___
 **Запуск приложения**
 
 ```
-Running in Main.class
+docker start alphac
 ```
 
 ___
