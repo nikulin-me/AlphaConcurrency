@@ -27,11 +27,13 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     }
 
+    //Got all currencies prices today
     private Map<String, Double> getCurrencies(String appId) {
         Map map = new Gson().fromJson(currencyFeignClient.getLatest(appId), Map.class);
         return (Map<String, Double>) map.get("rates");
     }
 
+    //Got all currencies yesterday
     private Map<String, Double> getCurrenciesYesterday(String appId) {
         LocalDateTime now = LocalDateTime.now().minusDays(YESTERDAY);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -40,6 +42,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         return (Map<String, Double>) map.get("rates");
     }
 
+    //Delta
     public Double getDeltaBetweenYesterdayAndNow(String appId, String currency) {
         return getLatest(appId, currency) - getHistorical(appId, currency);
     }

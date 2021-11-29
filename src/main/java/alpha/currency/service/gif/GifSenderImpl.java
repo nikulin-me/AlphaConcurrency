@@ -14,6 +14,10 @@ import java.util.Random;
 public class GifSenderImpl implements GifSender {
     private final GifService gifService;
 
+    /**
+     *
+     * @return url of random gif from gif list
+     */
     @Override
     public String getGifByCurrency(String appId, String currency) {
         Random random = new Random();

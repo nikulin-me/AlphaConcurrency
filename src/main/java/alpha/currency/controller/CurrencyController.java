@@ -15,6 +15,11 @@ public class CurrencyController {
     @Value("${acc-key.exchange}")
     private String appId;
 
+    /**
+     *
+     * @param currency
+     * @return delta between today and yesterday
+     */
     @GetMapping("/currency/{currency}")
     public Double getDelta(@PathVariable String currency){
         return currencyService.getDeltaBetweenYesterdayAndNow(appId,currency);
