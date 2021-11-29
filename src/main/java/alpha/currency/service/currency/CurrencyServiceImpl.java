@@ -30,7 +30,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public Double getLatest(String currency) throws NonExistentCurrencyException {
         log.info(String.format("Getting latest price for %s ",currency));
-        Double price = getCurrencies().get(currency);
+        Double price = getRates().get(currency);
         if (price ==null){
             log.error(String.format("%s is not present",currency));
             throw new NonExistentCurrencyException(String.format("%s doesn't exist!",currency));
@@ -46,7 +46,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public Double getHistorical(String currency) throws NonExistentCurrencyException{
         log.info(String.format("Getting yesterday price for %s ",currency));
-        Double price = getCurrenciesYesterday().get(currency);
+        Double price = getRatesYesterday().get(currency);
         if (price ==null){
             throw new NonExistentCurrencyException(String.format("%s doesn`t exist!",currency));
         }
@@ -58,7 +58,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     /**
      * @return  Got all currencies prices today
      */
-    private Map<String, Double> getCurrencies() {
+    private Map<String, Double> getRates() {
         Map map = new Gson().fromJson(currencyFeignClient.getLatest(appKeyRates), Map.class);
         return (Map<String, Double>) map.get("rates");
     }
@@ -66,7 +66,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     /**
      * @return Got all currencies yesterday
      */
-    private Map<String, Double> getCurrenciesYesterday() {
+    private Map<String, Double> getRatesYesterday() {
         LocalDateTime now = LocalDateTime.now().minusDays(YESTERDAY);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String format = formatter.format(now);

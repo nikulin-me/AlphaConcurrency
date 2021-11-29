@@ -1,10 +1,7 @@
 package alpha.currency.controller;
 
 import alpha.currency.model.Datum;
-import alpha.currency.model.Gif;
-import alpha.currency.service.currency.CurrencyService;
 import alpha.currency.service.gif.GifSender;
-import ch.qos.logback.core.net.ObjectWriter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
@@ -14,9 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

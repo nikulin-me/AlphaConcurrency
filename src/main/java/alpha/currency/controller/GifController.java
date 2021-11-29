@@ -1,9 +1,7 @@
 package alpha.currency.controller;
 
 import alpha.currency.model.Datum;
-import alpha.currency.model.Gif;
 import alpha.currency.service.gif.GifSender;
-import alpha.currency.service.gif.GifService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
