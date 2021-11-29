@@ -5,11 +5,13 @@ import alpha.currency.model.Gif;
 import alpha.currency.service.currency.CurrencySender;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GifServiceImpl implements GifService {
     private final GifFeignClient gifFeignClient;
 
@@ -20,7 +22,8 @@ public class GifServiceImpl implements GifService {
 
     @Override
     public Gif getGif(String currency) {
-        return new Gson().fromJson(gifFeignClient.getGif(appGif,getRequestByDelta(currency)),Gif.class);
+        log.info("Getting gif");
+        return new Gson().fromJson(gifFeignClient.getGif(appGif, getEndpointDependingDelta(currency)),Gif.class);
     }
 
     /**
@@ -28,7 +31,8 @@ public class GifServiceImpl implements GifService {
      * @param currency
      * @return if delta+->/rich else: /broke
      */
-    public String getRequestByDelta(String currency){
+    public String getEndpointDependingDelta(String currency){
+        log.info("Getting endpoint depending of delta");
         boolean iRich = currencySender.amIRich(currency);
         if (iRich){
             return "rich";

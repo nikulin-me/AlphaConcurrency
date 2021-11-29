@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,7 +33,7 @@ class CurrencyServiceImplTest {
     @Test
     void shouldReturnDelta() {
         CurrencyServiceImpl mock = mock(CurrencyServiceImpl.class);
-        when(mock.getDeltaBetweenYesterdayAndNow("RUB")).thenReturn(10.0);
+        when(mock.getDeltaBetweenYesterdayAndNow(anyString())).thenReturn(10.0);
         Double latest = currencyService.getLatest("RUB");
         Double historical = currencyService.getHistorical("RUB");
         assertEquals(latest-historical,currencyService.getDeltaBetweenYesterdayAndNow("RUB"));

@@ -5,5 +5,5 @@ import alpha.currency.model.Gif;
 
 public interface GifService {
     Gif getGif(String request);
-    String getRequestByDelta(String currency);
+    String getEndpointDependingDelta(String currency);
 }

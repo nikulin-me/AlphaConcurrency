@@ -28,6 +28,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         log.info(String.format("Getting latest price for %s ",currency));
         Double price = getCurrencies().get(currency);
         if (price ==null){
+            log.error(String.format("%s is not present",currency));
             throw new NonExistentCurrencyException(String.format("%s doesn't exist!",currency));
         }
         else {

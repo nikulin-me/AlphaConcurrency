@@ -14,7 +14,7 @@ class CurrencySenderImplTest {
     private CurrencySender sender;
 
     @Test
-    void amIRich() {
+    void shouldReturnTrueOrFalseDependingDelta() {
         CurrencySender mock = mock(CurrencySender.class);
         when(mock.amIRich("RUB")).thenReturn(true);
         assertEquals(mock.amIRich("RUB"),sender.amIRich("RUB"));
