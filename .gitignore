@@ -1,5 +1,0 @@
-.idea/
-/build/reports/
-# ignore all logs
-*.log
-.gitignore
