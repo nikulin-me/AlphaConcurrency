@@ -4,6 +4,9 @@ package alpha.currency.clients;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +19,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+
+import java.io.IOException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
@@ -36,14 +41,22 @@ class GifFeignClientTest {
     }
 
     @Test
-    void getGif() {
-        stubFor(WireMock.get(urlMatching("/latest.json"))
+    void getGif() throws IOException {
+        stubFor(WireMock.get(urlPathEqualTo("/"))
                 .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(String.valueOf(okJson(String.valueOf(Double.MAX_VALUE))))
                         .withStatus(200)));
 
-        /*mockMvc.perform((RequestBuilder) get("/currency?currency=RUB"))
-                .andExpect();*/
+        String url = "http://localhost:8082/";
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("Accept", "application/json");
+        client.execute(request);
 
-        verify(getRequestedFor(urlPathEqualTo("/latest.json")));
+
+        verify(getRequestedFor(urlPathEqualTo("/"))
+                .withHeader("Content-Type", equalTo("application/json")));
     }
 }
