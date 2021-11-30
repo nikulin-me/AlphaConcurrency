@@ -25,14 +25,12 @@ class GifFeignClientTest {
     @Value("${acc-key.giphy}")
     private String appId;
 
-    @Autowired
-    private GifSender gifSender;
 
     @MockBean
     private GifFeignClient feignClient;
 
     @Test
     void getGif() {
-        assertTrue(feignClient.getGif(appId,"rich").length()>100);
+        assertFalse(feignClient.getGif(appId,"rich").isEmpty());
     }
 }

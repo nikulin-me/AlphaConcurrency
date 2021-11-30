@@ -2,6 +2,7 @@ package alpha.currency.service.currency;
 
 import alpha.currency.clients.CurrencyFeignClient;
 import alpha.currency.exceptions.NonExistentCurrencyException;
+import alpha.currency.model.Currency;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
@@ -58,20 +59,18 @@ public class CurrencyServiceImpl implements CurrencyService {
     /**
      * @return  Got all currencies prices today
      */
-    private Map<String, Double> getRates() {
-        Map map = new Gson().fromJson(currencyFeignClient.getLatest(appKeyRates), Map.class);
-        return (Map<String, Double>) map.get("rates");
+    private HashMap<String, Double> getRates() {
+        return new Gson().fromJson(currencyFeignClient.getLatest(appKeyRates), Currency.class).getRates();
     }
 
     /**
      * @return Got all currencies yesterday
      */
-    private Map<String, Double> getRatesYesterday() {
+    private HashMap<String, Double> getRatesYesterday() {
         LocalDateTime now = LocalDateTime.now().minusDays(YESTERDAY);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String format = formatter.format(now);
-        Map map = new Gson().fromJson(currencyFeignClient.getHistorical(appKeyRates, format), Map.class);
-        return (Map<String, Double>) map.get("rates");
+        return new Gson().fromJson(currencyFeignClient.getHistorical(appKeyRates, format), Currency.class).getRates();
     }
 
     /**
