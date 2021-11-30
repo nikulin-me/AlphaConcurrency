@@ -1,8 +1,10 @@
 package alpha.currency.service.gif;
 
+import alpha.currency.service.currency.CurrencySender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -14,6 +16,8 @@ class GifServiceImplTest {
     private GifService gifService;
 
 
+    @MockBean
+    private CurrencySender sender;
 
     @Test
     void shouldGetGif() {
@@ -22,12 +26,14 @@ class GifServiceImplTest {
 
     @Test
     void shouldReturnEndpointDependingOnDelta() {
+        when(sender.amIRich("RUB")).thenReturn(true);
+        when(sender.amIRich("ALL")).thenReturn(false);
         GifServiceImpl mock = mock(GifServiceImpl.class);
         when(mock.getEndpointDependingDelta("RUB")).thenReturn("rich");
         when(mock.getEndpointDependingDelta("ALL")).thenReturn("broke");
         assertAll(
-                () -> assertEquals(mock.getEndpointDependingDelta("RUB"), gifService.getEndpointDependingDelta("RUB")),
-                () ->assertEquals(mock.getEndpointDependingDelta("ALL"),gifService.getEndpointDependingDelta("ALL"))
+                () -> assertEquals("rich", gifService.getEndpointDependingDelta("RUB")),
+                () -> assertEquals("broke",gifService.getEndpointDependingDelta("ALL"))
         );
     }
 }
