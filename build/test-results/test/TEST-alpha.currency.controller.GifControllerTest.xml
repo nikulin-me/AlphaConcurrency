@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="alpha.currency.controller.GifControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-30T18:46:41" hostname="temapc" time="0.078">
+  <properties/>
+  <testcase name="getGif()" classname="alpha.currency.controller.GifControllerTest" time="0.078"/>
+  <system-out><![CDATA[2021-11-30 22:46:40.165  INFO 51757 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [alpha.currency.controller.GifControllerTest], using SpringBootContextLoader
+2021-11-30 22:46:40.166  INFO 51757 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [alpha.currency.controller.GifControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-11-30 22:46:40.166  INFO 51757 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [alpha.currency.controller.GifControllerTest]: GifControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-11-30 22:46:40.177  INFO 51757 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration alpha.currency.Main for test class alpha.currency.controller.GifControllerTest
+2021-11-30 22:46:40.179  INFO 51757 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-11-30 22:46:40.181  INFO 51757 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@35f6c238, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6028eeeb, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@63528262, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@721bf731, org.springframework.test.context.support.DirtiesContextTestExecutionListener@717f1c48, org.springframework.test.context.event.EventPublishingTestExecutionListener@5607eb3a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@21b1220a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@cbefb72, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@52a2bf1, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6c9d5e55, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@449480be, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3f8a9635]
+2021-11-30 22:46:40.257  INFO 51757 --- [    Test worker] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-11-30 22:46:40.257  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource bootstrap [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-11-30 22:46:40.258  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource springCloudClientHostInfo [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.260  INFO 51757 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$52a571f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.4.RELEASE)
+
+2021-11-30 22:46:40.322  INFO 51757 --- [    Test worker] a.currency.controller.GifControllerTest  : No active profile set, falling back to default profiles: default
+2021-11-30 22:46:40.534  INFO 51757 --- [    Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=def4af34-e97b-3f40-b869-299891411cc9
+2021-11-30 22:46:40.548  INFO 51757 --- [    Test worker] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Annotations [org.springframework.boot.test.autoconfigure.properties.AnnotationsPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource springCloudClientHostInfo [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource applicationConfig: [classpath:/application.properties] [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.549  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource springCloudDefaultProperties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.550  INFO 51757 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2021-11-30 22:46:40.590  INFO 51757 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$52a571f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-30 22:46:40.682  INFO 51757 --- [    Test worker] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-11-30 22:46:40.686  INFO 51757 --- [    Test worker] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-11-30 22:46:40.686  INFO 51757 --- [    Test worker] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-11-30 22:46:40.746  INFO 51757 --- [    Test worker] c.u.j.encryptor.DefaultLazyEncryptor     : Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@11b0488e with name: jasyptStringEncryptor
+2021-11-30 22:46:40.832  WARN 51757 --- [    Test worker] o.s.c.n.a.ArchaiusAutoConfiguration      : Netflix ConfigurationManager has already been installed, unable to re-install
+2021-11-30 22:46:40.921  INFO 51757 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-11-30 22:46:41.122  INFO 51757 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-30 22:46:41.123  INFO 51757 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-30 22:46:41.130  INFO 51757 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
+2021-11-30 22:46:41.275  INFO 51757 --- [    Test worker] a.currency.controller.GifControllerTest  : Started GifControllerTest in 1.091 seconds (JVM running for 14.263)
+2021-11-30 22:46:41.328  INFO 51757 --- [    Test worker] alpha.currency.controller.GifController  : Getting gif.json from controller
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /gif.json
+       Parameters = {currency=[RUB]}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = alpha.currency.controller.GifController
+           Method = alpha.currency.controller.GifController#getGif(String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"type":null,"id":null,"url":null,"images":null}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
