@@ -1,64 +1,88 @@
 package alpha.currency.clients;
 
-import alpha.currency.WireMockConfig;
-import alpha.currency.service.currency.CurrencyService;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
+import alpha.currency.controller.CurrencyController;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static java.nio.charset.Charset.defaultCharset;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.util.StreamUtils.copyToString;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(classes = { WireMockConfig.class })
+@SpringBootTest
 @ExtendWith(SpringExtension.class)
+@AutoConfigureMockMvc
 @EnableConfigurationProperties
+@ActiveProfiles("test")
 class CurrencyFeignClientTest {
-    @Value("${acc-key.exchange}")
-    private String appID;
 
-    @Autowired
-    private CurrencyFeignClient feignClient;
+
+    @BeforeAll
+    static void init() {
+        WireMockServer wireMockServer = new WireMockServer(
+                new WireMockConfiguration().port(8081)
+        );
+        wireMockServer.start();
+        WireMock.configureFor("localhost", 8081);
+    }
 
 
     @Test
     void getLatest() throws Exception {
-        assertFalse(feignClient.getLatest(appID).isEmpty());
+        stubFor(WireMock.get(urlPathEqualTo("/latest.json"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(String.valueOf(okJson(String.valueOf(Double.MAX_VALUE))))
+                        .withStatus(200)));
+
+        String url = "http://localhost:8081/latest.json";
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("Accept", "application/json");
+        client.execute(request);
+
+
+        verify(getRequestedFor(urlPathEqualTo("/latest.json"))
+                .withHeader("Content-Type", equalTo("application/json")));
     }
 
     @Test
-    void getHistorical() {
-        assertFalse(feignClient.getHistorical(appID,"2021-11-09").isEmpty());
+    void getHistorical() throws IOException {
+        stubFor(WireMock.get(urlPathEqualTo("/historical/11232341/.json"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(String.valueOf(okJson(String.valueOf(Double.MAX_VALUE))))
+                        .withStatus(200)));
+
+        String url = "http://localhost:8081/historical/11232341.json";
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("Accept", "application/json");
+        client.execute(request);
+
+
+        verify(getRequestedFor(urlPathEqualTo("/historical/11232341.json"))
+                .withHeader("Content-Type", equalTo("application/json")));
     }
 }

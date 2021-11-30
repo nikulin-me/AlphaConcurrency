@@ -29,7 +29,7 @@ class CurrencyControllerTest {
     void shouldGetDeltaMsg() throws Exception {
         when(currencyService.getDeltaBetweenYesterdayAndNow("RUB"))
                 .thenReturn(0.5);
-        mockMvc.perform(get("/currency/RUB"))
+        mockMvc.perform(get("/rates/RUB"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))

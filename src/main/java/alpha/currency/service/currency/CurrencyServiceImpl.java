@@ -34,7 +34,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         Double price = getRates().get(currency);
         if (price ==null){
             log.error(String.format("%s is not present",currency));
-            throw new NonExistentCurrencyException(String.format("%s doesn't exist!",currency));
+            throw new NonExistentCurrencyException("Currency doesn`t exist!");
         }
         else {
             return price;

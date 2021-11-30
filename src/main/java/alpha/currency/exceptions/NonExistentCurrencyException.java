@@ -12,4 +12,9 @@ public class NonExistentCurrencyException extends IllegalArgumentException{
     public NonExistentCurrencyException(String message) {
         super(message);
     }
+
+    public NonExistentCurrencyException(String message,Throwable cause){
+        super(message,cause);
+    }
+
 }

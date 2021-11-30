@@ -33,14 +33,14 @@ class GifControllerTest {
         Datum datum = new Datum();
         when(gifSender.getGifByCurrency("RUB"))
                 .thenReturn(new Datum());
-        mockMvc.perform(get("/gif/RUB/json"))
+        mockMvc.perform(get("/gif.json?currency=RUB"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(content().json(convertObjectToJsonString(datum)));
 
     }
-    private String convertObjectToJsonString(Datum datum) throws JsonProcessingException {
+    private String convertObjectToJsonString(Datum datum) {
         return new Gson().toJson(datum);
     }
 }
